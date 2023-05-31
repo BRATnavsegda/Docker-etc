@@ -7,17 +7,23 @@ HW4
 
 ```
 cd ~
+
 mkdir python-docker
+
 sudo apt install python3.10-venv
+
 cd python-docker
+
 python3 -m venv .venv
+
 source .venv/bin/activate
 
 python3 -m pip install Flask
+
 python3 -m pip freeze > requirements.txt
+
 touch app.py
 nano app.py
-
 ***
 from flask import Flask
 app = Flask(__name__)
@@ -27,13 +33,13 @@ def hello_world():
     return 'Hello, Docker!'
 ***
 
-Проверяем работоспособность 
+Проверяем работоспособность: 
 python3 -m flask run
 В браузере заходим на localhost:5000
 
+Создаем Dockerfile:
 cd python-docker/
 nano Dockerfile
-
 ***
 # Базовый образ.
 
@@ -59,12 +65,12 @@ COPY . .
 # Команда, которая выполняется при запуске контейнера.
 
 CMD ["python3", "-m" , "flask", "run", "--host=0.0.0.0"]
-
 ***
+
 
 sudo docker build -t python-docker .
 
-It's done
+It's done!!
 
 ```
 
